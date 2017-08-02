@@ -10,6 +10,8 @@ RUN \
 
   apk update && \
   apk --no-cache --update add \
+    # CircleCI 2.0 requires ssh binary
+    openssh-client \
     git \
     # For compilation
     make \

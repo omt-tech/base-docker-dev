@@ -1,3 +1,3 @@
 REPO=omttech
 IMAGE=base-docker-dev
-VERSION=0.1.0
+VERSION=0.1.1
