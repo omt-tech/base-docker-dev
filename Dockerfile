@@ -13,12 +13,17 @@ RUN \
   apk --no-cache --update add \
     # CircleCI 2.0 requires ssh binary
     openssh-client \
+    # CircleCI 2.0 dosen't current support interpolating env vars. Add bash
+    # so we can use BASH_ENV to implement it.
+    bash \
     git \
     # For compilation
     make \
     g++ \
     # Ranch doesn't like alpine's grep -E
     grep \
+    # Used to add citext before running migrations on core
+    postgresql-client \
     nodejs \
     yarn \
     # For live reload
