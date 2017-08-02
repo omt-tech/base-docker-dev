@@ -7,6 +7,7 @@ LABEL maintainer="trond@omt.tech"
 # Install Node and NPM
 RUN \
   mkdir -p /app && \
+  chown -R default:0 /app && \
 
   apk update && \
   apk --no-cache --update add \
