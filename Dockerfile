@@ -1,6 +1,6 @@
 FROM bitwalker/alpine-elixir:1.4.5
 
-ENV REFRESHED_AT=2017-07-31
+ENV REFRESHED_AT=2017-08-02
 
 LABEL maintainer="trond@omt.tech"
 
@@ -31,5 +31,7 @@ RUN \
   mix local.rebar --force
 
 ENV PATH=./node_modules/.bin:$PATH
+
+USER default
 
 WORKDIR /app
