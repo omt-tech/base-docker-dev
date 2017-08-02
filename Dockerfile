@@ -33,4 +33,6 @@ RUN \
 
 ENV PATH=./node_modules/.bin:$PATH
 
+USER default
+
 WORKDIR ${HOME}
