@@ -1,6 +1,6 @@
 FROM bitwalker/alpine-elixir:1.4.5
 
-ENV REFRESHED_AT=2017-08-02
+ENV REFRESHED_AT=2017-08-03
 
 LABEL maintainer="trond@omt.tech"
 
@@ -11,11 +11,6 @@ RUN \
 
   apk update && \
   apk --no-cache --update add \
-    # CircleCI 2.0 requires ssh binary
-    openssh-client \
-    # CircleCI 2.0 dosen't current support interpolating env vars. Add bash
-    # so we can use BASH_ENV to implement it.
-    bash \
     git \
     # For compilation
     make \
