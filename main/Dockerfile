@@ -17,8 +17,6 @@ RUN \
     g++ \
     # Ranch doesn't like alpine's grep -E
     grep \
-    # Used to add citext before running migrations on core
-    postgresql-client \
     nodejs \
     yarn \
     # For live reload
