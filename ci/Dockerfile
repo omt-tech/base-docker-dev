@@ -16,6 +16,8 @@ RUN \
     bash \
     # CircleCI 2.0: Need docker to build images for deployment
     docker \
+    # Used to add citext before running migrations on core
+    postgresql-client \
   && \
   rm -rf /var/cache/apk/*
 
