@@ -1,6 +1,6 @@
 FROM bitwalker/alpine-elixir:1.4.5
 
-ENV REFRESHED_AT=2017-08-03
+ENV REFRESHED_AT=2017-08-11
 
 LABEL maintainer="trond@omt.tech"
 
@@ -9,7 +9,12 @@ RUN \
   mkdir -p /app && \
   chown -R default:0 /app && \
 
+  # Add edge/testing for aws-cli
+  echo "@edgetesting http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
+  # Add edge/community for node 8.x
+  echo "@edgecommunity http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
   apk update && \
+  apk --no-cache upgrade && \
   apk --no-cache --update add \
     git \
     # For compilation
@@ -17,10 +22,13 @@ RUN \
     g++ \
     # Ranch doesn't like alpine's grep -E
     grep \
-    nodejs \
-    yarn \
+    nodejs-current@edgecommunity \
+    nodejs-current-npm@edgecommunity \
+    yarn@edgecommunity \
     # For live reload
     inotify-tools \
+    # Used by most of our projects
+    wkhtmltopdf@edgetesting \
   && \
   update-ca-certificates --fresh && \
   rm -rf /var/cache/apk/*
@@ -30,7 +38,3 @@ RUN \
   mix local.rebar --force
 
 ENV PATH=./node_modules/.bin:$PATH
-
-USER default
-
-WORKDIR ${HOME}
