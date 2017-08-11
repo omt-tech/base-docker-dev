@@ -1,15 +1,11 @@
-FROM omttech/base-docker-dev:0.2.1
+FROM omttech/base-docker-dev:0.3.0
 
 ENV REFRESHED_AT=2017-08-03
 
 LABEL maintainer="trond@omt.tech"
 
-USER root
-
 # Install dependencies required for CircleCI
 RUN \
-  # Have to use testing repo to get aws-cli
-  echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
   apk --no-cache add \
     # CircleCI 2.0: Requires ssh binary
     openssh-client \
@@ -21,12 +17,8 @@ RUN \
     # Used to add citext before running migrations on core
     postgresql-client \
     # Used to get login information to push docker images to ECR
-    aws-cli \
+    aws-cli@edgetesting \
     # Used to parse output from aws cli
     jq \
   && \
   rm -rf /var/cache/apk/*
-
-USER default
-
-WORKDIR ${HOME}
