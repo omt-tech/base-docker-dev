@@ -22,3 +22,7 @@ RUN \
     jq \
   && \
   rm -rf /var/cache/apk/*
+
+# These are set so we use the correct ~/.ssh folder when cloning the repo
+USER default
+WORKDIR ${HOME}
