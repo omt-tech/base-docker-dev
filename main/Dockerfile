@@ -1,6 +1,6 @@
-FROM bitwalker/alpine-elixir:1.4.5
+FROM bitwalker/alpine-elixir:1.5.1
 
-ENV REFRESHED_AT=2017-08-11
+ENV REFRESHED_AT=2017-09-20
 
 LABEL maintainer="trond@omt.tech"
 
