@@ -1,6 +1,6 @@
 FROM bitwalker/alpine-elixir:1.5.1
 
-ENV REFRESHED_AT=2017-09-20
+ENV REFRESHED_AT=2017-10-06
 
 LABEL maintainer="trond@omt.tech"
 
@@ -22,6 +22,8 @@ RUN \
     g++ \
     # Ranch doesn't like alpine's grep -E
     grep \
+    # Distillery 1.5 needs bash now.
+    bash \
     nodejs-current@edgecommunity \
     nodejs-current-npm@edgecommunity \
     yarn@edgecommunity \
