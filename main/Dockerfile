@@ -11,6 +11,8 @@ RUN \
 
   # Add edge/testing for aws-cli
   echo "@edgetesting http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
+  # Add edge/main for libuv
+  echo "@edgemain http://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
   # Add edge/community for node 8.x
   echo "@edgecommunity http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
   apk update && \
@@ -24,8 +26,8 @@ RUN \
     grep \
     # Distillery 1.5 needs bash now.
     bash \
-    # Fixes issue with node missing symbols
-    libexecinfo-dev@edge \
+    # node broke without this version in 8.6
+    libuv@edgemain \
     nodejs-current@edgecommunity \
     nodejs-current-npm@edgecommunity \
     yarn@edgecommunity \
