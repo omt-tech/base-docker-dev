@@ -1,6 +1,6 @@
-FROM omttech/base-docker-dev:0.4.0
+FROM omttech/base-docker-dev:0.5.0
 
-ENV REFRESHED_AT=2017-09-20
+ENV REFRESHED_AT=2017-10-06
 
 LABEL maintainer="trond@omt.tech"
 
@@ -9,9 +9,6 @@ RUN \
   apk --no-cache add \
     # CircleCI 2.0: Requires ssh binary
     openssh-client \
-    # CircleCI 2.0: Dosen't current support interpolating env vars. Add bash
-    # so we can use BASH_ENV to implement it.
-    bash \
     # CircleCI 2.0: Need docker to build images for deployment
     docker \
     # Used to add citext before running migrations on core
