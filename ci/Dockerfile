@@ -1,4 +1,4 @@
-FROM omttech/base-docker-dev:0.5.1
+FROM omttech/base-docker-dev:0.5.2
 
 ENV REFRESHED_AT=2017-10-06
 
