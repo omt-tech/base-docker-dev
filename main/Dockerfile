@@ -24,6 +24,8 @@ RUN \
     grep \
     # Distillery 1.5 needs bash now.
     bash \
+    # Fixes issue with node missing symbols
+    libexecinfo-dev@edge \
     nodejs-current@edgecommunity \
     nodejs-current-npm@edgecommunity \
     yarn@edgecommunity \
