@@ -1,22 +1,24 @@
-FROM omttech/base-docker-dev:0.5.2
+FROM omttech/base-docker-dev:0.6.1
 
-ENV REFRESHED_AT=2017-10-06
+ENV REFRESHED_AT=2018-01-17
 
 LABEL maintainer="trond@omt.tech"
 
 # Install dependencies required for CircleCI
+# CircleCI 2.0: Requires ssh binary. Docker is to build images and deployment
+# postgresql-client is used to add citext before running migrations on core
+# jq is used to parse output from aws cli
+# pip3 is used to install awscli
+# awscli is used to get login information to push docker images to ECR
 RUN \
-  apk --no-cache add \
-    # CircleCI 2.0: Requires ssh binary
+  apk --no-cache --update add \
     openssh-client \
-    # CircleCI 2.0: Need docker to build images for deployment
     docker \
-    # Used to add citext before running migrations on core
     postgresql-client \
-    # Used to get login information to push docker images to ECR
-    aws-cli@edgetesting \
-    # Used to parse output from aws cli
     jq \
+    python3 \
+  && \
+    pip3 install awscli \
   && \
   rm -rf /var/cache/apk/*
 
