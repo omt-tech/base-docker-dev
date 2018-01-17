@@ -4,6 +4,8 @@ ENV REFRESHED_AT=2018-01-17
 
 LABEL maintainer="trond@omt.tech"
 
+# TODO: Remove the sed once bitwalker's alpine-erlang repo is updated
+
 # Install Node and NPM
 # edge/testing is added for aws-cli and wkhtmltopdf
 # make and g++ is for compilation of native modules for Elixir (and possibly node)
@@ -14,8 +16,9 @@ LABEL maintainer="trond@omt.tech"
 RUN \
   mkdir -p /app && \
   chown -R default:0 /app && \
+  sed -i 's/v3.6/v3.7/g' /etc/apk/repositories && \
   echo "@edgetesting http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-  apk --no-cache --update upgrade && \
+  apk --no-cache --update --purge upgrade && \
   apk --no-cache --update add \
     git \
     make \
