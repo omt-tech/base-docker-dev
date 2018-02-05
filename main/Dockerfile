@@ -1,10 +1,8 @@
-FROM bitwalker/alpine-elixir:1.5.3
+FROM bitwalker/alpine-elixir:1.6.1
 
-ENV REFRESHED_AT=2018-01-17
+ENV REFRESHED_AT=2018-02-05
 
 LABEL maintainer="trond@omt.tech"
-
-# TODO: Remove the sed once bitwalker's alpine-erlang repo is updated
 
 # Install Node and NPM
 # edge/testing is added for aws-cli and wkhtmltopdf
@@ -16,7 +14,6 @@ LABEL maintainer="trond@omt.tech"
 RUN \
   mkdir -p /app && \
   chown -R default:0 /app && \
-  sed -i 's/v3.6/v3.7/g' /etc/apk/repositories && \
   echo "@edgetesting http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
   apk --no-cache --update --purge upgrade && \
   apk --no-cache --update add \
