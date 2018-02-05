@@ -1,6 +1,6 @@
-FROM omttech/base-docker-dev:0.6.1
+FROM omttech/base-docker-dev:0.7.0
 
-ENV REFRESHED_AT=2018-01-17
+ENV REFRESHED_AT=2018-02-05
 
 LABEL maintainer="trond@omt.tech"
 
